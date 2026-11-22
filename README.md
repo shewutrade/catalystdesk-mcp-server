@@ -2,7 +2,29 @@
 
 `@catalystdesk/mcp-server` is a dependency-free Node.js 18+ bridge from MCP stdio to the CatalystDesk Streamable HTTP gateway. Start it with `npx -y @catalystdesk/mcp-server`. The default endpoint is `https://x402.catalystdesk.ai/mcp`. Set `CATALYSTDESK_MCP_URL` to connect to another CatalystDesk gateway.
 
-The showcase serves synthetic trade summaries delayed by at least 15 minutes. Showcase analytics carry `availability: "delayed_showcase"`, `synthetic_showcase: true`, and `delay_seconds: 900`. Analytics are free in showcase mode and share a 20-requests-per-hour IP limit. Live paid mode accepts x402 on Base and uses USDC. The free `get_delayed_regime_lite` tool returns 15-minute-delayed trade context when the live gateway has public feed coverage.
+The free `get_delayed_regime_lite` tool returns 15-minute-delayed trade context when the live gateway has public feed coverage. Where enabled, off-hours discovery returns clearly labeled synthetic context with `availability: "delayed_showcase"`, `synthetic_showcase: true`, and `delay_seconds: 900`. Free delayed discovery is limited to 20 requests per hour per IP by default.
+
+## Connect an MCP client
+
+| Client | Setup |
+| --- | --- |
+| Google Antigravity | Use the bundled `plugin.json` and `mcp_config.json`. |
+| Gemini CLI | Use the bundled `gemini-extension.json` and skill for the extension. |
+| Claude Code | Run `claude mcp add catalystdesk-regime -- npx -y @catalystdesk/mcp-server`, or load the bundled plugin and `.mcp.json`. |
+| Claude Desktop and Cursor | Add the `mcpServers` entry from `mcp_config.json` to the client's MCP settings. |
+| OpenAI Codex | Run `codex mcp add catalystdesk-regime -- npx -y @catalystdesk/mcp-server`. |
+| ChatGPT | Use the Streamable HTTP endpoint for a remote app. Submission metadata is in `openai/chatgpt-connector.json`. Paid calls require a client that can send a prepaid bearer token or x402 proof. |
+| VS Code | In `.vscode/mcp.json`, add a stdio server under `servers` with `command: "npx"` and `args: ["-y", "@catalystdesk/mcp-server"]`. |
+
+## Pay for live compute
+
+Buy a $5, $25, or $100 pack using a card or Apple Pay where enabled. After payment, save the token locally so running stdio bridges pick it up on their next request. [Hosted checkout](https://x402.catalystdesk.ai/v1/session/buy)
+
+```sh
+npx -y @catalystdesk/mcp-server --save-token-stdin
+```
+
+Paste the token into the command's input, press Enter, then send EOF with Ctrl+D (Ctrl+Z then Enter on Windows). The token stays out of the shell command and its argument list. The bridge reads `~/.config/catalystdesk/session_token` on each request. `CATALYSTDESK_TOKEN_FILE` selects a different file. Leave `CATALYSTDESK_SESSION_TOKEN` unset in the MCP client to use the saved file. An explicitly set value takes precedence, including an empty value.
 
 | Live tool | USDC per call |
 | --- | ---: |
@@ -13,6 +35,6 @@ The showcase serves synthetic trade summaries delayed by at least 15 minutes. Sh
 | `scan_curated_universe_regimes` | 0.120 |
 | `scan_parameter_surface` | 0.150 |
 
-Prepaid sessions start at 1 USDC via `POST /v1/session/deposit`. Set `CATALYSTDESK_SESSION_TOKEN` to an existing session token to send it as a bearer credential. Clients that sign their own x402 proofs can forward them in `tools/call` under `params._meta["x402/payment"]`. The bridge preserves the gateway's tool result and payment metadata.
+For Base USDC, use x402 per call or fund a session starting at 1 USDC via `POST /v1/session/deposit`. Clients that sign their own x402 proofs can forward them in `tools/call` under `params._meta["x402/payment"]`. Both prepaid rails use the same bearer flow and a 24-hour expiry. Failed calls, including `503 source_stale`, deduct zero credits.
 
 The tools report descriptive statistics with `"executable": false` and `"redistribution_allowed": false`. They provide no trade recommendations and expose no raw prices or quotes.

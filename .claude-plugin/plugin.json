@@ -1,0 +1,11 @@
+{
+  "name": "catalystdesk",
+  "version": "1.1.0",
+  "description": "Inspect descriptive market regime, liquidity, and cross-frame statistics for curated tickers.",
+  "author": {
+    "name": "CatalystDesk",
+    "url": "https://catalystdesk.ai"
+  },
+  "homepage": "https://catalystdesk.ai/en/developers",
+  "repository": "https://github.com/shewutrade/catalystdesk-mcp-server"
+}

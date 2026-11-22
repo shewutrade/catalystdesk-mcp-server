@@ -13,5 +13,5 @@ startCommand:
   commandFunction: |-
     (config) => ({command: 'node', args: ['bin/cli.mjs'], env: {
       CATALYSTDESK_MCP_URL: config.mcpUrl || 'https://x402.catalystdesk.ai/mcp',
-      CATALYSTDESK_SESSION_TOKEN: config.sessionToken || ''
+      ...(config.sessionToken ? { CATALYSTDESK_SESSION_TOKEN: config.sessionToken } : {})
     }})

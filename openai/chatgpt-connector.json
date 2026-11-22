@@ -1,0 +1,18 @@
+{
+  "name": "CatalystDesk Market Regime",
+  "version": "1.1.0",
+  "description": "Inspect descriptive market regime, liquidity, and cross-frame statistics for curated tickers.",
+  "mcp_url": "https://x402.catalystdesk.ai/mcp",
+  "privacy_policy_url": "https://catalystdesk.ai/en/legal/privacy",
+  "terms_of_service_url": "https://catalystdesk.ai/en/legal/terms",
+  "support_email": "hello@catalystdesk.ai",
+  "auth": {
+    "type": "none",
+    "paid_tools": "Prepaid bearer sessions and x402 are supported by the gateway when the client can supply payment headers."
+  },
+  "compliance_notes": [
+    "Descriptive market regime analytics only. No investment advice, trade recommendations, or order placement.",
+    "Tool responses set executable to false and redistribution_allowed to false.",
+    "Free discovery can return clearly labeled synthetic context where enabled. Paid analytics require the live source."
+  ]
+}

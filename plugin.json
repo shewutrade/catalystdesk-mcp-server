@@ -1,0 +1,19 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "catalystdesk",
+  "displayName": "CatalystDesk Market Regime",
+  "version": "1.1.0",
+  "description": "Inspect descriptive market regime, liquidity, and cross-frame statistics for curated tickers.",
+  "logo": "assets/logo.svg",
+  "author": {
+    "name": "CatalystDesk",
+    "url": "https://catalystdesk.ai"
+  },
+  "homepage": "https://catalystdesk.ai/en/developers",
+  "repository": "https://github.com/shewutrade/catalystdesk-mcp-server",
+  "suggestedPrompts": [
+    "Which ticker symbols does CatalystDesk cover?",
+    "Show the free delayed market context for NVDA.",
+    "Compare NVDA regimes across two frames using periods and bar thresholds I provide."
+  ]
+}

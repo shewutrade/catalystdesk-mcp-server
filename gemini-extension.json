@@ -1,0 +1,14 @@
+{
+  "name": "catalystdesk",
+  "version": "1.1.0",
+  "mcpServers": {
+    "catalystdesk-regime": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@catalystdesk/mcp-server@1.1.0"
+      ]
+    }
+  },
+  "contextFileName": "skills/catalystdesk-regime/SKILL.md"
+}

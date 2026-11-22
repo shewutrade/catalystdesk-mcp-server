@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "catalystdesk-regime": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@catalystdesk/mcp-server@1.1.0"
+      ]
+    }
+  }
+}
