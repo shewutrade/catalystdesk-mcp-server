@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "ai.catalystdesk/mcp-server",
+  "title": "CatalystDesk",
+  "description": "Descriptive market regime analytics with a 15-minute delayed synthetic showcase.",
+  "version": "1.0.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@catalystdesk/mcp-server",
+      "version": "1.0.0",
+      "transport": {"type": "stdio"},
+      "environmentVariables": [
+        {"name": "CATALYSTDESK_MCP_URL", "description": "CatalystDesk Streamable HTTP endpoint", "default": "https://x402.catalystdesk.ai/mcp"},
+        {"name": "CATALYSTDESK_SESSION_TOKEN", "description": "Optional prepaid session token for live x402 mode", "isSecret": true}
+      ]
+    }
+  ],
+  "remotes": [{"type": "streamable-http", "url": "https://x402.catalystdesk.ai/mcp"}]
+}

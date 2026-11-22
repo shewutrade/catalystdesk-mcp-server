@@ -1,0 +1,28 @@
+{
+  "name": "@catalystdesk/mcp-server",
+  "version": "1.0.0",
+  "description": "Stdio bridge for the CatalystDesk descriptive market regime gateway.",
+  "type": "module",
+  "mcpName": "ai.catalystdesk/mcp-server",
+  "bin": {
+    "catalystdesk-mcp": "bin/cli.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/cli.mjs",
+    "server.json",
+    "smithery.yaml",
+    "glama.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "homepage": "https://catalystdesk.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shewutrade/catalystdesk-mcp-server.git"
+  }
+}

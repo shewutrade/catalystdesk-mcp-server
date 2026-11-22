@@ -1,0 +1,17 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      mcpUrl:
+        type: string
+        default: https://x402.catalystdesk.ai/mcp
+        description: CatalystDesk Streamable HTTP endpoint
+      sessionToken:
+        type: string
+        description: Optional prepaid session token for live mode
+  commandFunction: |-
+    (config) => ({command: 'node', args: ['bin/cli.mjs'], env: {
+      CATALYSTDESK_MCP_URL: config.mcpUrl || 'https://x402.catalystdesk.ai/mcp',
+      CATALYSTDESK_SESSION_TOKEN: config.sessionToken || ''
+    }})
