@@ -4,7 +4,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "@catalystdesk/mcp-server@1.1.0"
+        "@catalystdesk/mcp-server@1.2.0"
       ]
     }
   }

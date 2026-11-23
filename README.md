@@ -1,4 +1,4 @@
-# CatalystDesk MCP Server
+# CatalystDesk MCP Server 1.2.0
 
 `@catalystdesk/mcp-server` is a dependency-free Node.js 18+ bridge from MCP stdio to the CatalystDesk Streamable HTTP gateway. Start it with `npx -y @catalystdesk/mcp-server`. The default endpoint is `https://x402.catalystdesk.ai/mcp`. Set `CATALYSTDESK_MCP_URL` to connect to another CatalystDesk gateway.
 
@@ -38,3 +38,9 @@ Paste the token into the command's input, press Enter, then send EOF with Ctrl+D
 For Base USDC, use x402 per call or fund a session starting at 1 USDC via `POST /v1/session/deposit`. Clients that sign their own x402 proofs can forward them in `tools/call` under `params._meta["x402/payment"]`. Both prepaid rails use the same bearer flow and a 24-hour expiry. Failed calls, including `503 source_stale`, deduct zero credits.
 
 The tools report descriptive statistics with `"executable": false` and `"redistribution_allowed": false`. They provide no trade recommendations and expose no raw prices or quotes.
+
+## Review usage and invoices
+
+Call the free `get_session_status` tool with your prepaid bearer token to see the balance, itemized paid usage and available billing documents. The optional `limit` is 1 to 100. For REST access, use `GET /v1/session/usage` with the same bearer header. Add `?format=csv` to export up to 200 rows with `limit`.
+
+Open the [session console](https://x402.catalystdesk.ai/v1/session/console) to view paid calls, export a CSV statement or download available invoices after the balance expires. Hosted card checkout supports business tax identifiers and official PDF invoices.

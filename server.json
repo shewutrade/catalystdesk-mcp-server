@@ -3,13 +3,13 @@
   "name": "ai.catalystdesk/mcp-server",
   "title": "CatalystDesk",
   "description": "Descriptive market regime analytics with free 15-minute delayed discovery and paid live compute.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@catalystdesk/mcp-server",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "transport": {"type": "stdio"},
       "environmentVariables": [
         {"name": "CATALYSTDESK_MCP_URL", "description": "CatalystDesk Streamable HTTP endpoint", "default": "https://x402.catalystdesk.ai/mcp"},

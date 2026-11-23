@@ -1,6 +1,6 @@
 {
   "name": "CatalystDesk Market Regime",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Inspect descriptive market regime, liquidity, and cross-frame statistics for curated tickers.",
   "mcp_url": "https://x402.catalystdesk.ai/mcp",
   "privacy_policy_url": "https://catalystdesk.ai/en/legal/privacy",

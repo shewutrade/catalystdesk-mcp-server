@@ -21,3 +21,6 @@ Discover live schemas and prices with `tools/list`. Ask the caller to choose par
 Treat all analytics as descriptive and non-advisory. Honor `executable: false` and `redistribution_allowed: false`. Preserve the stated source age and distinguish delayed or synthetic output when summarizing. A `503 source_stale` response deducts zero credits.
 
 If a paid call returns `402` with `sessionBuyUrl`, direct the caller to that hosted card and Apple Pay checkout. After payment, they can run `npx -y @catalystdesk/mcp-server --save-token-stdin` in their terminal, paste the token into standard input, press Enter, and send EOF with Ctrl+D (Ctrl+Z then Enter on Windows). Running stdio bridges pick up the saved token on the next request when `CATALYSTDESK_SESSION_TOKEN` is unset. Clients that can sign Base USDC payments may use x402 per call or fund a session at `POST /v1/session/deposit`. Keep bearer tokens private.
+
+
+With CatalystDesk MCP Server 1.2.0, call the free `get_session_status` tool using the prepaid bearer header. An optional `limit` from 1 to 100 controls the itemized history. Open `/v1/session/console` on the gateway for a CSV statement, receipts and available PDF invoices. Keep tokens in bearer headers or the console form.
