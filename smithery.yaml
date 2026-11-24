@@ -10,8 +10,13 @@ startCommand:
       sessionToken:
         type: string
         description: Optional prepaid session token for live mode
+      polygonApiKey:
+        type: string
+        format: password
+        description: Optional customer-owned Polygon.io / Massive.com API key for real-time market data. Omit for free 15-minute delayed fallback.
   commandFunction: |-
     (config) => ({command: 'node', args: ['bin/cli.mjs'], env: {
       CATALYSTDESK_MCP_URL: config.mcpUrl || 'https://x402.catalystdesk.ai/mcp',
-      ...(config.sessionToken ? { CATALYSTDESK_SESSION_TOKEN: config.sessionToken } : {})
+      ...(config.sessionToken ? { CATALYSTDESK_SESSION_TOKEN: config.sessionToken } : {}),
+      ...(config.polygonApiKey ? { CATALYSTDESK_POLYGON_API_KEY: config.polygonApiKey } : {})
     }})

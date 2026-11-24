@@ -1,8 +1,23 @@
-# CatalystDesk MCP Server 1.2.0
+# CatalystDesk MCP Server 1.3.0
+
+## Polygon / Massive market data
+
+Use your own subscribed Polygon / Massive key for real-time U.S. equity inputs.
+With a supported delayed subscription, paid tools use your 15-minute delayed
+window. Requests without a usable key get synthetic context on the same delay
+at zero charge. Call `get_polygon_data_status` to check the key and tier.
+
+For stdio, run `npx -y @catalystdesk/mcp-server --save-polygon-key-stdin` and
+enter the key, followed by EOF. For `tools/call` requests, the CLI uses the
+owner-only local key file or an explicitly set `CATALYSTDESK_POLYGON_API_KEY`,
+which takes precedence. Use `--clear-polygon-key` to remove the file.
+Remote HTTP clients can send `X-Polygon-Api-Key` or bind a key to their prepaid
+session at [the session console](https://x402.catalystdesk.ai/v1/session/console).
+See [Polygon / Massive plans](https://x402.catalystdesk.ai/go/polygon?plan=stocks-advanced).
 
 `@catalystdesk/mcp-server` is a dependency-free Node.js 18+ bridge from MCP stdio to the CatalystDesk Streamable HTTP gateway. Start it with `npx -y @catalystdesk/mcp-server`. The default endpoint is `https://x402.catalystdesk.ai/mcp`. Set `CATALYSTDESK_MCP_URL` to connect to another CatalystDesk gateway.
 
-The free `get_delayed_regime_lite` tool returns 15-minute-delayed trade context when the live gateway has public feed coverage. Where enabled, off-hours discovery returns clearly labeled synthetic context with `availability: "delayed_showcase"`, `synthetic_showcase: true`, and `delay_seconds: 900`. Free delayed discovery is limited to 20 requests per hour per IP by default.
+The free `get_delayed_regime_lite` tool returns 15-minute-delayed trade context from your usable Polygon / Massive key. Without a usable key, the gateway serves clearly labeled synthetic context around the clock with `availability: "delayed_showcase"`, `synthetic_showcase: true`, and `delay_seconds: 900`. Free delayed discovery is limited to 20 requests per hour per IP by default.
 
 ## Connect an MCP client
 

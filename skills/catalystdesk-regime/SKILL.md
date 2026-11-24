@@ -11,6 +11,8 @@ Discover live schemas and prices with `tools/list`. Ask the caller to choose par
 | --- | --- |
 | `list_curated_symbols` | Confirm which tickers are available. |
 | `get_delayed_regime_lite` | Read free context delayed by at least 15 minutes. Identify any `synthetic_showcase: true` output as synthetic. |
+| `get_session_status` | Read prepaid balance, itemized usage and available billing documents. |
+| `get_polygon_data_status` | Check the current data source and the supplied Polygon / Massive key's tier. |
 | `get_regime_snapshot` | Describe a ticker's live regime using caller-chosen `fast_period` and `slow_period`. |
 | `compute_dynamic_regime` | Build a custom non-time bar regime with caller-chosen `bar_type`, `bar_threshold`, `fast_period`, and `slow_period`. |
 | `compute_multiframe_resonance` | Compare alignment across two to four frames. The caller chooses the periods, bar type, and threshold for each frame. |
@@ -23,4 +25,11 @@ Treat all analytics as descriptive and non-advisory. Honor `executable: false` a
 If a paid call returns `402` with `sessionBuyUrl`, direct the caller to that hosted card and Apple Pay checkout. After payment, they can run `npx -y @catalystdesk/mcp-server --save-token-stdin` in their terminal, paste the token into standard input, press Enter, and send EOF with Ctrl+D (Ctrl+Z then Enter on Windows). Running stdio bridges pick up the saved token on the next request when `CATALYSTDESK_SESSION_TOKEN` is unset. Clients that can sign Base USDC payments may use x402 per call or fund a session at `POST /v1/session/deposit`. Keep bearer tokens private.
 
 
-With CatalystDesk MCP Server 1.2.0, call the free `get_session_status` tool using the prepaid bearer header. An optional `limit` from 1 to 100 controls the itemized history. Open `/v1/session/console` on the gateway for a CSV statement, receipts and available PDF invoices. Keep tokens in bearer headers or the console form.
+With CatalystDesk MCP Server 1.3.0, call the free `get_session_status` tool using the prepaid bearer header. An optional `limit` from 1 to 100 controls the itemized history. Open `/v1/session/console` on the gateway for a CSV statement, receipts and available PDF invoices. Keep tokens in bearer headers or the console form.
+
+Check `get_polygon_data_status` before attempting paid compute. Use your own
+subscribed Polygon / Massive key with the `X-Polygon-Api-Key` header, bind it at
+`/v1/session/console`, or save it for stdio with
+`npx -y @catalystdesk/mcp-server --save-polygon-key-stdin`. See `/go/polygon`
+for plan options. Without a usable key the gateway returns synthetic 15-minute
+delayed context at zero charge.
