@@ -1,11 +1,16 @@
-# CatalystDesk MCP Server 1.3.0
+# CatalystDesk MCP Server 1.3.1
 
 ## Polygon / Massive market data
 
 Use your own subscribed Polygon / Massive key for real-time U.S. equity inputs.
 With a supported delayed subscription, paid tools use your 15-minute delayed
-window. Requests without a usable key get synthetic context on the same delay
-at zero charge. Call `get_polygon_data_status` to check the key and tier.
+window. Missing, invalid, or ineligible keys get synthetic context on the
+same delay at zero charge. When Polygon throttles a key, paid tools return
+`429 polygon_rate_limited` and deduct zero credits. Honor the HTTP
+`Retry-After` header before retrying. The MCP tool error includes the same
+interval as an integer `retry_after_seconds`. Stdio clients can wait that
+long before sending another call and spending session or key probe quota.
+Call `get_polygon_data_status` to check the key, tier, and cooldown.
 
 For stdio, run `npx -y @catalystdesk/mcp-server --save-polygon-key-stdin` and
 enter the key, followed by EOF. For `tools/call` requests, the CLI uses the

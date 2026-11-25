@@ -217,7 +217,7 @@ for await (const line of createInterface({ input: process.stdin, crlfDelay: Infi
         'Content-Type': 'application/json',
         Accept: 'application/json, text/event-stream',
         'MCP-Protocol-Version': protocolVersion,
-        'User-Agent': 'catalystdesk-stdio/1.3.0',
+        'User-Agent': 'catalystdesk-stdio/1.3.1',
         ...(sessionId ? { 'Mcp-Session-Id': sessionId } : {}),
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...(polygonKey ? { 'X-Polygon-Api-Key': polygonKey } : {}),

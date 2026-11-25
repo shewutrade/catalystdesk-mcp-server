@@ -13,7 +13,7 @@ startCommand:
       polygonApiKey:
         type: string
         format: password
-        description: Optional customer-owned Polygon.io / Massive.com API key for real-time market data. Omit for free 15-minute delayed fallback.
+        description: Optional customer-owned Polygon.io / Massive.com API key for real-time market data. Omit for the free synthetic 15-minute delayed fallback.
   commandFunction: |-
     (config) => ({command: 'node', args: ['bin/cli.mjs'], env: {
       CATALYSTDESK_MCP_URL: config.mcpUrl || 'https://x402.catalystdesk.ai/mcp',

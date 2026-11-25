@@ -1,6 +1,6 @@
 {
   "name": "CatalystDesk Market Regime",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Inspect descriptive market regime, liquidity, and cross-frame statistics for curated tickers.",
   "mcp_url": "https://x402.catalystdesk.ai/mcp",
   "privacy_policy_url": "https://catalystdesk.ai/en/legal/privacy",
@@ -11,10 +11,10 @@
     "paid_tools": "Prepaid bearer sessions and x402 are supported by the gateway when the client can supply payment headers."
   },
   "compliance_notes": [
-    "Use get_polygon_data_status to check your own Polygon / Massive tier. Bind a key at /v1/session/console or use the stdio --save-polygon-key-stdin command.",
-    "Requests without a usable Polygon key get 15-minute delayed synthetic fallback at zero charge. See /go/polygon for subscription plans.",
+    "This connector sends no key or payment headers, so its calls receive the synthetic fallback. To compute on your own Polygon / Massive data, use an MCP client that sends X-Polygon-Api-Key or a prepaid bearer, such as the stdio bridge with --save-polygon-key-stdin.",
+    "Missing, invalid, or ineligible Polygon keys get 15-minute delayed synthetic fallback at zero charge; throttled keys receive 429 polygon_rate_limited on paid tools at zero charge. See /go/polygon for subscription plans.",
     "Descriptive market regime analytics only. No investment advice, trade recommendations, or order placement.",
     "Tool responses set executable to false and redistribution_allowed to false.",
-    "Paid analytics use your real-time or 15-minute delayed Polygon / Massive key. Without a usable key, the gateway returns clearly labeled synthetic context at zero charge."
+    "Paid analytics use your real-time or 15-minute delayed Polygon / Massive key. Missing, invalid, or ineligible keys receive clearly labeled synthetic context at zero charge; throttled keys receive 429 polygon_rate_limited on paid tools at zero charge."
   ]
 }
