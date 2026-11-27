@@ -1,6 +1,6 @@
 {
   "name": "CatalystDesk Market Regime",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Inspect descriptive market regime, liquidity, and cross-frame statistics for curated tickers.",
   "mcp_url": "https://x402.catalystdesk.ai/mcp",
   "privacy_policy_url": "https://catalystdesk.ai/en/legal/privacy",
@@ -15,6 +15,7 @@
     "Missing, invalid, or ineligible Polygon keys get 15-minute delayed synthetic fallback at zero charge; throttled keys receive 429 polygon_rate_limited on paid tools at zero charge. See /go/polygon for subscription plans.",
     "Descriptive market regime analytics only. No investment advice, trade recommendations, or order placement.",
     "Tool responses set executable to false and redistribution_allowed to false.",
-    "Paid analytics use your real-time or 15-minute delayed Polygon / Massive key. Missing, invalid, or ineligible keys receive clearly labeled synthetic context at zero charge; throttled keys receive 429 polygon_rate_limited on paid tools at zero charge."
+    "Paid analytics use your real-time or 15-minute delayed Polygon / Massive key. Missing, invalid, or ineligible keys receive clearly labeled synthetic context at zero charge; throttled keys receive 429 polygon_rate_limited on paid tools at zero charge.",
+    "V2.5 dual-loop workflow: get_workspace_state -> preflight_trade -> execute in your own venue -> reconcile_trade. Use run_quant_ci_gate for strategy trials and SEC EDGAR tools for 8-K and Form 4 grounding. These paid workflows require no Polygon key. Open /v1/session/console for the email-verified starter trial."
   ]
 }
